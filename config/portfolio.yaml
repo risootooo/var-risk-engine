@@ -1,0 +1,8 @@
+# Portfolio definition - single source of truth for the engine defaults.
+tickers: [SPY, QQQ, TLT, LQD, GLD]
+weights: [0.35, 0.20, 0.20, 0.10, 0.15]
+start: "2007-01-01"
+alphas: [0.95, 0.975, 0.99]   # 0.975 = the FRTB expected-shortfall level
+backtest_window: 250          # Basel convention
+monte_carlo_draws: 200000
+evt_threshold_quantile: 0.95

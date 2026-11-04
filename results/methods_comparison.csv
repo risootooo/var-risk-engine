@@ -1,0 +1,34 @@
+method,alpha,VaR_pct,ES_pct
+Historical,0.95,1.126,1.743
+Gaussian,0.95,1.168,1.474
+Student-t,0.95,1.004,1.655
+Cornish-Fisher,0.95,1.046,2.729
+EWMA (RiskMetrics),0.95,1.338,1.678
+Monte Carlo (multiv-t),0.95,1.387,1.938
+Monte Carlo (multiv-normal),0.95,1.173,1.475
+FHS GARCH-t,0.95,1.025,1.428
+FHS EGARCH-t,0.95,1.147,1.61
+FHS GJR-GARCH-t,0.95,1.098,1.525
+EVT POT-GPD,0.95,1.127,1.749
+Historical,0.975,1.497,2.211
+Gaussian,0.975,1.399,1.675
+Student-t,0.975,1.368,2.15
+Cornish-Fisher,0.975,1.958,3.911
+EWMA (RiskMetrics),0.975,1.594,1.901
+Monte Carlo (multiv-t),0.975,1.747,2.331
+Monte Carlo (multiv-normal),0.975,1.4,1.675
+FHS GARCH-t,0.975,1.28,1.712
+FHS EGARCH-t,0.975,1.45,1.942
+FHS GJR-GARCH-t,0.975,1.365,1.83
+EVT POT-GPD,0.975,1.486,2.218
+Historical,0.99,2.031,2.952
+Gaussian,0.99,1.667,1.914
+Student-t,0.99,1.952,2.968
+Cornish-Fisher,0.99,3.482,5.751
+EWMA (RiskMetrics),0.99,1.892,2.168
+Monte Carlo (multiv-t),0.99,2.237,2.899
+Monte Carlo (multiv-normal),0.99,1.669,1.913
+FHS GARCH-t,0.99,1.645,2.145
+FHS EGARCH-t,0.99,1.831,2.405
+FHS GJR-GARCH-t,0.99,1.733,2.269
+EVT POT-GPD,0.99,2.058,2.966

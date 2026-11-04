@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "n_days": 4988,
+    "start": "2007-01-04",
+    "end": "2026-10-30",
+    "worst_day_pct": -6.42,
+    "ann_vol_pct": 11.61,
+    "t_nu": 3.180169872589514,
+    "riskfolio_diff_pct": 0.0368,
+    "garch_persistence": 0.9914142159398633,
+    "evt_xi": 0.23435931822463288
+  },
+  "riskfolio_crosscheck": {
+    "0.95": {
+      "riskfolio_VaR_pct": 1.126,
+      "riskfolio_CVaR_pct": 1.745,
+      "engine_VaR_pct": 1.126,
+      "engine_ES_pct": 1.743,
+      "diff_VaR": 0.0001,
+      "diff_ES": 0.0015
+    },
+    "0.99": {
+      "riskfolio_VaR_pct": 2.068,
+      "riskfolio_CVaR_pct": 2.954,
+      "engine_VaR_pct": 2.031,
+      "engine_ES_pct": 2.952,
+      "diff_VaR": 0.0368,
+      "diff_ES": 0.0021
+    }
+  }
+}

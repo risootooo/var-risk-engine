@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "var-engine-pro"
+version = "2.0.0"
+description = "Multi-method VaR/ES engine with regulatory-grade backtesting (Kupiec, Christoffersen, Acerbi-Szekely, Basel traffic light), stressed VaR and Euler component ES."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "pandas>=2.0", "numpy>=1.26", "scipy>=1.11", "yfinance>=0.2",
+    "arch>=7", "plotly>=5.15", "pyyaml>=6",
+]
+
+[project.optional-dependencies]
+crosscheck = ["riskfolio-lib>=0.4", "quantstats>=0.0.62"]
+app = ["streamlit>=1.36"]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

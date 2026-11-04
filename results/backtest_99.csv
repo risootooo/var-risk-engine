@@ -1,0 +1,5 @@
+method,alpha,n,exceptions,expected,exception_rate_pct,Kupiec_LR,Kupiec_p,Christoffersen_LR,Christoffersen_p,CondCoverage_p,Acerbi_Z1,Acerbi_Z2,Basel_zone_last250,exceptions_last250
+historical,0.99,4738,66,47.4,1.39,6.586,0.0103,22.062,0.0,0.0,0.191,-0.659,GREEN,1
+gaussian,0.99,4738,108,47.4,2.28,57.516,0.0,11.223,0.0008,0.0,0.3,-1.964,YELLOW,7
+ewma,0.99,4738,94,47.4,1.98,36.023,0.0,8.952,0.0028,0.0,0.184,-1.35,YELLOW,6
+garch_fhs,0.99,4238,44,42.4,1.04,0.062,0.8037,6.633,0.01,0.0352,0.047,-0.088,GREEN,3

@@ -1,0 +1,10 @@
+pandas>=2.0
+numpy>=1.26
+scipy>=1.11
+yfinance>=0.2
+arch>=7
+plotly>=5.15
+pyyaml>=6
+riskfolio-lib>=0.4
+quantstats>=0.0.62
+pytest>=8
