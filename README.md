@@ -1,5 +1,26 @@
 # VaR Engine Pro — Multi-Method Market Risk with Regulatory-Grade Backtesting
 
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-19%20passing-brightgreen)
+![Methods](https://img.shields.io/badge/VaR%2FES%20estimators-9-blue)
+![Framework](https://img.shields.io/badge/backtesting-Basel%20%7C%20FRTB-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Dashboard](https://img.shields.io/badge/dashboard-Plotly%20%2B%20Streamlit-purple)
+
+> **Live demo:** open [`dashboard/dashboard.html`](dashboard/dashboard.html) — a single self-contained interactive file (Plotly inlined, works offline). Move weights and confidence levels and watch VaR/ES recompute.
+>
+> **In one line:** nine VaR/ES estimators, a Basel-grade backtest suite, stressed VaR and Euler component ES — on 19 years of real data, cross-checked against Riskfolio-Lib.
+
+```mermaid
+flowchart LR
+    A[Market data<br/>yfinance + cache] --> B[Portfolio returns<br/>column-order guard]
+    B --> C[9 VaR/ES estimators<br/>Historical · Gaussian · Student-t<br/>Cornish-Fisher · EWMA · Monte Carlo<br/>GARCH-FHS · EVT/GPD]
+    C --> D[Backtesting<br/>Kupiec · Christoffersen<br/>Basel traffic light<br/>Acerbi-Szekely Z1/Z2]
+    C --> E[Analysis<br/>Stressed VaR · 6 regimes<br/>Euler component ES]
+    D --> F[Dashboard + Streamlit app]
+    E --> F
+```
+
 A market-risk engine the way a bank's model-validation team would want to see
 one built: **nine VaR/ES estimators** on 19 years of real data (2007–2026,
 covering the GFC), a **backtest suite that follows the Basel framework**
