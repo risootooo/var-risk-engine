@@ -1,6 +1,6 @@
 # VaR Engine Pro — Multi-Method Market Risk with Regulatory-Grade Backtesting
 
-![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white) ![release](https://img.shields.io/github/v/release/risootooo/var-risk-engine)
 ![Tests](https://img.shields.io/badge/tests-19%20passing-brightgreen)
 ![Methods](https://img.shields.io/badge/VaR%2FES%20estimators-9-blue)
 ![Framework](https://img.shields.io/badge/backtesting-Basel%20%7C%20FRTB-orange)
