@@ -16,6 +16,7 @@ from scipy import stats
 
 from . import analysis, backtest, data as data_mod, methods
 from .dashboard import build_dashboard
+from .observability import traced_run
 
 log = logging.getLogger("var_engine")
 ROOT = Path(__file__).resolve().parents[2]
@@ -81,16 +82,31 @@ def main() -> None:
     args = ap.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 
+    # Structured trace for this run (observability.py): the idempotency key
+    # is a deterministic hash of the inputs, so a re-run on the same inputs
+    # is identifiable as the same run rather than a silent double-write.
+    trace = traced_run(
+        "var_engine_pipeline",
+        str(ROOT / "data" / "prices_2007.csv"),
+        bool(args.refresh_data),
+        ALPHAS,
+        tuple(float(w) for w in data_mod.WEIGHTS),
+    )
+
     prices = data_mod.load_prices(ROOT / "data" / "prices_2007.csv", refresh=args.refresh_data)
     asset_rets = data_mod.log_returns(prices)
     port = data_mod.portfolio_returns(asset_rets, data_mod.WEIGHTS)
+    trace.event("data_loaded", n_days=int(len(port)))
 
     methods_df, garch_main, evt_main = compute_methods(asset_rets, port)
+    trace.event("methods_done", n_rows=int(len(methods_df)))
     bt99 = backtest.run_backtests(port, alpha=0.99)
     bt95 = backtest.run_backtests(port, alpha=0.95)
+    trace.event("backtests_done")
     regimes = analysis.regime_table(port)
     stress = analysis.stressed_var(port)
     components = analysis.component_es(asset_rets, data_mod.WEIGHTS)
+    trace.event("analysis_done")
 
     # Rolling frame for the dashboard chart (historical 99, window 250)
     r = port.values
@@ -99,6 +115,7 @@ def main() -> None:
     rolling["exception"] = (rolling["return_pct"] < -rolling["var99_hist_pct"]).astype(int)
 
     cross = riskfolio_crosscheck(port)
+    trace.event("crosscheck_done", available="error" not in cross)
     max_diff = 0.0
     if "error" not in cross:
         max_diff = max(max(v["diff_VaR"], v["diff_ES"]) for v in cross.values())
@@ -116,7 +133,14 @@ def main() -> None:
     regimes.to_csv(res / "regimes.csv", index=False)
     stress.to_csv(res / "stress.csv", index=False)
     components.to_csv(res / "component_es.csv", index=False)
-    json.dump({"meta": meta, "riskfolio_crosscheck": cross}, open(res / "summary.json", "w"), indent=2)
+    trace.event("results_written")
+    trace.finish()
+    json.dump(
+        {"meta": meta, "riskfolio_crosscheck": cross, "run_trace": json.loads(trace.to_json())},
+        open(res / "summary.json", "w"),
+        indent=2,
+    )
+    log.info("run trace: %s", trace.to_json())
 
     html = build_dashboard(port, methods_df, bt99, bt95, regimes, stress, components, rolling, meta)
     (ROOT / "dashboard").mkdir(exist_ok=True)

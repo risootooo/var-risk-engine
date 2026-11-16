@@ -1,7 +1,7 @@
 # VaR Engine Pro — Multi-Method Market Risk with Regulatory-Grade Backtesting
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white) ![release](https://img.shields.io/github/v/release/risootooo/var-risk-engine)
-![Tests](https://img.shields.io/badge/tests-19%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-22%20passing-brightgreen)
 ![Methods](https://img.shields.io/badge/VaR%2FES%20estimators-9-blue)
 ![Framework](https://img.shields.io/badge/backtesting-Basel%20%7C%20FRTB-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -43,7 +43,7 @@ CI, a Streamlit app and an interactive Plotly dashboard.
 ```bash
 make setup        # venv + requirements (arch, riskfolio-lib, quantstats, plotly, streamlit)
 make run          # full pipeline -> results/ + dashboard/dashboard.html
-make test         # pytest suite (19 tests)
+make test         # pytest suite (22 tests)
 make app          # Streamlit front-end (live weights / confidence level)
 ```
 
@@ -58,10 +58,11 @@ file (Plotly inlined, works offline, no server).
 | `src/var_engine/methods.py` | Historical, Gaussian, Student-t, Cornish–Fisher, EWMA/RiskMetrics, Monte Carlo (multiv normal & t), GARCH/EGARCH/GJR filtered historical simulation, EVT peaks-over-threshold (GPD) |
 | `src/var_engine/backtest.py` | Kupiec POF, Christoffersen independence + conditional coverage, Basel traffic light, Acerbi–Székely Z1/Z2; rolling one-step-ahead backtests (GARCH refit annually on 750d) |
 | `src/var_engine/analysis.py` | Six-regime table, stressed VaR (named windows + worst-vol 12m), component ES (Euler allocation, sums exactly to portfolio ES) |
-| `src/var_engine/cli.py` | End-to-end pipeline; Riskfolio-Lib cross-check; QuantStats tearsheet |
+| `src/var_engine/cli.py` | End-to-end pipeline; Riskfolio-Lib cross-check; QuantStats tearsheet; structured run trace (trace_id + idempotency key, written to `results/summary.json`) |
+| `src/var_engine/observability.py` | Run tracing + deterministic idempotency keys (stdlib only, no external deps) |
 | `src/var_engine/dashboard.py` | Plotly dashboard export |
 | `app/streamlit_app.py` | Interactive app: move weights / confidence, VaR-ES recomputes live |
-| `tests/` | 19 tests on synthetic data with known properties (a test must be able to fail for the right reason) |
+| `tests/` | 22 tests on synthetic data with known properties (a test must be able to fail for the right reason) |
 | `RESEARCH.md` | The regulatory + academic basis (Basel MAR32, FRTB, Acerbi–Székely 2014, McNeil & Frey, Barone-Adesi) and deliberate omissions |
 | `notebooks/` | Guided analysis incl. the EVT threshold sensitivity check |
 
